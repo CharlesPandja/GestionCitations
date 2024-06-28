@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_citation_delete', {'id': citation.id}) }}" style="display:inline-block;">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ citation.id) }}">
+    <button class="btn btn-danger">Supprimer</button>
+</form>

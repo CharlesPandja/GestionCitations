@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citation{% endblock %}
+
+{% block body %}
+    <h1>Citation</h1>
+
+    <div class="citation-detail">
+        <p><strong>Citation :</strong> {{ citation.texte }}</p>
+        <p><strong>Auteur :</strong> {{ citation.auteur }}</p>
+    </div>
+
+    <form>
+    <button class="btn btn-info"><a href="{{ path('app_citation_index') }}">Retour à la liste</a></button>
+    <button class="btn btn-info"><a href="{{ path('app_citation_edit', {'id': citation.id}) }}">Modifier</a></button>
+    </form>
+
+    <form method="post" action="{{ path('app_citation_delete', {'id': citation.id}) }}" style="display:inline-block;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ citation.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+    </form>
+
+    {% block stylesheets %}
+    <style>
+        h1{
+            text-align: center;
+            color: black;
+        }
+        .citation-detail {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+    {% endblock %}
+{% endblock %}
